@@ -5,6 +5,9 @@ const sequelize = require("./Config/database");
 // Import routes
 const userRoutes = require("./Routes/userRoutes");
 
+//Import models
+require("./Models");
+
 const app = express();
 app.use(cors());
 app.use(express.json());

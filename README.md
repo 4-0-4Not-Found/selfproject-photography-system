@@ -4,7 +4,7 @@ This is a sample system for a photo studio business which specializes in **print
 
 ---
 
-## ✅ Current Progress
+## ✅ 23/09/2025 Progress
 - Initialized **Node.js + Express.js** backend  
 - Installed and configured **Sequelize ORM**  
 - Connected to **Neon.tech (Postgres)** using SSL  
@@ -13,6 +13,16 @@ This is a sample system for a photo studio business which specializes in **print
 - Synced database successfully with Neon  
 
 ---
+
+## ✅ 24/09/2025 Progress
+- Initialized **Node.js + Express.js** backend  
+- Installed and configured **Sequelize ORM**  
+- Connected to **Neon.tech (Postgres)** using SSL  
+- Added **.env** for secure configuration  
+- Created **User model** (with roles: admin, customer)  
+- Added **Service, Booking, Order, Photo, and Gallery models**  
+- Defined associations between models in `Models/index.js`  
+- Synced database successfully with Neon  
 
 # 📝 Notes
 
