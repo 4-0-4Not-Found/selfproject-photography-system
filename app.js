@@ -4,6 +4,11 @@ const sequelize = require("./Config/database");
 
 // Import routes
 const userRoutes = require("./Routes/userRoutes");
+const serviceRoutes = require("./Routes/serviceRoutes");
+const orderRoutes = require("./Routes/orderRoutes");
+const bookingRoutes = require("./Routes/bookingRoutes");
+const photoRoutes = require("./Routes/photoRoutes");
+const galleryRoutes = require("./Routes/galleryRoutes");
 
 //Import models
 require("./Models");
@@ -14,6 +19,11 @@ app.use(express.json());
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/services", serviceRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/photos", photoRoutes);
+app.use("/api/gallery",galleryRoutes);
 
 // Test DB connection + Sync models
 sequelize

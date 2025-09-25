@@ -24,6 +24,14 @@ This is a sample system for a photo studio business which specializes in **print
 - Defined associations between models in `Models/index.js`  
 - Synced database successfully with Neon  
 
+## ✅ 25/09/2025 Progress
+- Implemented Sequelize models: Booking, Order, Photo, Gallery, Payment
+- Defined associations between users, services, bookings, orders, and photos
+- Added controllers and routes for Orders, Bookings, Photos, and Gallery
+- Linked Photos with Orders and Payments with Orders
+- Tested endpoints with Thunder Client (CRUD verified for Orders, Bookings, and Photos)
+- Fixed missing imports in routes and improved error handling
+
 # 📝 Notes
 
 ## 🚀 Next Steps in Building the Website
