@@ -1,10 +1,16 @@
 const express = require("express");
-const orderController = require("../Controllers/orderController"); // import everything
-
 const router = express.Router();
+const orderController = require("../Controllers/orderController");
+const { authenticate, isAdmin } = require("../Middleware/authMiddleware");
 
-router.post("/", orderController.createOrder);   // Create order
-router.get("/", orderController.getOrders);     // Get all orders
-router.get("/:id", orderController.getOrderById); // Get by ID
+// customer creates an order
+router.post("/", authenticate, orderController.createOrder);
+
+// customer gets their orders
+router.get("/my", authenticate, orderController.getMyOrders);
+
+// admin manages orders
+router.get("/", authenticate, isAdmin, orderController.getOrders);
+router.put("/:id", authenticate, isAdmin, orderController.updateOrder);
 
 module.exports = router;

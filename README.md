@@ -32,6 +32,11 @@ This is a sample system for a photo studio business which specializes in **print
 - Tested endpoints with Thunder Client (CRUD verified for Orders, Bookings, and Photos)
 - Fixed missing imports in routes and improved error handling
 
+## ✅ 26/09/2025 Progress
+- Added role field (admin | customer) to User model
+- Prepped for role-based access control (RBAC)
+- Admin-only routes secured but testing deferred until UI
+
 # 📝 Notes
 
 ## 🚀 Next Steps in Building the Website

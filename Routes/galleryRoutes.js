@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { addGalleryPhoto, getGallery } = require("../Controllers/galleryController");
+const galleryController = require("../Controllers/galleryController");
+const { authenticate, isAdmin } = require("../Middleware/authMiddleware");
 
-// Add photo to gallery (Admin only later with JWT middleware)
-router.post("/", addGalleryPhoto);
-
-// Public: Get all gallery photos
-router.get("/", getGallery);
-
+router.get("/", galleryController.getGallery); // public
+router.post("/", authenticate, isAdmin, galleryController.addGalleryPhoto); // admin-only
 module.exports = router;

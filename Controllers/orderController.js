@@ -1,34 +1,82 @@
-const Order = require("../Models/order");
+const { Order, User, Service, Photo, Payment } = require("../Models");
 
-// Create new order
+// Customer creates order
 exports.createOrder = async (req, res) => {
   try {
-    const order = await Order.create(req.body);
+    const userId = req.user.id; // from token
+    const { serviceId, deliveryMethod, deliveryAddress } = req.body;
+
+    const order = await Order.create({
+      userId,
+      serviceId,
+      deliveryMethod,
+      deliveryAddress,
+    });
+
     res.status(201).json(order);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
-// Get all orders
+// Customer gets their orders
+exports.getMyOrders = async (req, res) => {
+  try {
+    const orders = await Order.findAll({
+      where: { userId: req.user.id },
+      include: [Service, Photo, Payment],
+    });
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Admin: get all orders
 exports.getOrders = async (req, res) => {
   try {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({
+      include: [User, Service, Photo, Payment],
+    });
     res.json(orders);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
 };
 
-// Order by ID
+// Get order by ID (admin only)
 exports.getOrderById = async (req, res) => {
   try {
-    const order = await Order.findByPk(req.params.id);
-    if (!order) {
-      return res.status(404).json({ error: "Order not found" });
-    }
+    const order = await Order.findByPk(req.params.id, {
+      include: [User, Service, Photo, Payment],
+    });
+    if (!order) return res.status(404).json({ error: "Order not found" });
     res.json(order);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Admin updates order
+exports.updateOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [updated] = await Order.update(req.body, { where: { id } });
+    if (!updated) return res.status(404).json({ error: "Order not found" });
+    const updatedOrder = await Order.findByPk(id);
+    res.json(updatedOrder);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Admin deletes order
+exports.deleteOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await Order.destroy({ where: { id } });
+    if (!deleted) return res.status(404).json({ error: "Order not found" });
+    res.json({ message: "Order deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

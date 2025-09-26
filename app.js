@@ -9,6 +9,7 @@ const orderRoutes = require("./Routes/orderRoutes");
 const bookingRoutes = require("./Routes/bookingRoutes");
 const photoRoutes = require("./Routes/photoRoutes");
 const galleryRoutes = require("./Routes/galleryRoutes");
+const authRoutes = require("./Routes/authRoutes");
 
 //Import models
 require("./Models");
@@ -24,6 +25,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/photos", photoRoutes);
 app.use("/api/gallery",galleryRoutes);
+app.use("/api/auth", authRoutes);
 
 // Test DB connection + Sync models
 sequelize
