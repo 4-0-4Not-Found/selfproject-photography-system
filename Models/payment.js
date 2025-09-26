@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../Config/database");
+const Order = require("./order");
 
 const Payment = sequelize.define("Payment", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
@@ -10,5 +11,9 @@ const Payment = sequelize.define("Payment", {
     defaultValue: "pending",
   },
 });
+
+// Associations
+Order.hasOne(Payment, { foreignKey: "orderId", onDelete: "CASCADE" });
+Payment.belongsTo(Order, { foreignKey: "orderId" });
 
 module.exports = Payment;

@@ -33,9 +33,10 @@ This is a sample system for a photo studio business which specializes in **print
 - Fixed missing imports in routes and improved error handling
 
 ## ✅ 26/09/2025 Progress
-- Added role field (admin | customer) to User model
-- Prepped for role-based access control (RBAC)
-- Admin-only routes secured but testing deferred until UI
+- Associations: Users ↔ Bookings, Services ↔ Bookings, Users ↔ Orders, Services ↔ Orders, Orders ↔ Photos, Orders ↔ Payments
+- Authentication: JWT with role-based access (user/admin)
+- Payments: Added cash/gcash methods, with endpoints for creating and fetching payments
+- Testing: Orders, Bookings, Photos, Gallery, and Payments successfully tested via Thunder Client
 
 # 📝 Notes
 
