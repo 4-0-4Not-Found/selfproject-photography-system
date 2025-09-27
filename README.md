@@ -38,6 +38,50 @@ This is a sample system for a photo studio business which specializes in **print
 - Payments: Added cash/gcash methods, with endpoints for creating and fetching payments
 - Testing: Orders, Bookings, Photos, Gallery, and Payments successfully tested via Thunder Client
 
+# Current File Structure
+- Config
+  * database.js
+- Controllers
+  * authController.js
+  * bookingController.js
+  * galleryController.js
+  * orderController.js
+  * paymentController.js
+  * photoController.js
+  * serviceController.js
+  * userController.js
+- Middleware
+  * authMiddleware.js
+  * upload.js
+- Models
+  * booking.js
+  * gallery.js
+  * index.js
+  * order.js
+  * payment.js
+  * photo.js
+  * service.js
+  * user.js
+- node_modules
+- Public
+- Routes
+  * authRoutes.js
+  * bookingRoutes.js
+  * galleryRoutes.js
+  * orderRoutes.js
+  * paymentRoutes.js
+  * photoRoutes.js
+  * serviceRoutes.js
+  * userRoutes.js
+- Views
+* .env
+* .gitinore
+* app.js
+* package-lock.json
+* package.json
+* README.md
+* server.js
+
 # 📝 Notes
 
 ## 🚀 Next Steps in Building the Website
