@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/4-0-4Not-Found/selfproject-photography-system#readme",
   "dependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "axios": "^1.12.2",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -29,9 +31,13 @@
     "mysql2": "^3.15.0",
     "pg": "^8.16.3",
     "pg-hstore": "^2.3.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.3",
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "vite": "^7.1.7"
   }
 }
