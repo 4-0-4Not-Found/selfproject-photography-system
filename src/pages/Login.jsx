@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../utils/axios"; // Use axios instance instead of direct axios
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -8,11 +8,14 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/auth/login", { email, password });
+      console.log("Attempting login...");
+      const res = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
+      console.log("Login success:", res.data);
       alert("Login successful!");
     } catch (err) {
-      alert("Login failed");
+      console.error("Login error:", err);
+      alert(`Login failed: ${err.response?.data?.error || err.message}`);
     }
   };
 
@@ -20,9 +23,9 @@ export default function Login() {
     <form onSubmit={handleLogin}>
       <h2>Login</h2>
       <input type="email" placeholder="Email" value={email}
-        onChange={(e) => setEmail(e.target.value)} />
+        onChange={(e) => setEmail(e.target.value)} required />
       <input type="password" placeholder="Password" value={password}
-        onChange={(e) => setPassword(e.target.value)} />
+        onChange={(e) => setPassword(e.target.value)} required />
       <button type="submit">Login</button>
     </form>
   );

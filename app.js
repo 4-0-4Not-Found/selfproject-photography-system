@@ -16,8 +16,26 @@ const paymentRoutes = require("./Routes/paymentRoutes");
 require("./Models");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: true, // Allow all origins during development
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"]
+}));
 app.use(express.json());
+
+//Test Routes
+app.get("/", (req, res) => {
+  res.json({ message: "Photography System API is running" });
+});
+
+app.get("/api/health", (req, res) => {
+  res.json({ status: "OK", timestamp: new Date().toISOString() });
+});
+
+app.get("/api/test", (req, res) => {
+  console.log("TEST ROUTE HIT");
+  res.json({ message: "Backend is working!" });
+});
 
 // Routes
 app.use("/api/users", userRoutes);
@@ -28,20 +46,5 @@ app.use("/api/photos", photoRoutes);
 app.use("/api/gallery",galleryRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/payments", paymentRoutes);
-
-// Test DB connection + Sync models
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log("✅ Connected to Neon Postgres");
-
-    return sequelize.sync(); // Sync all models (creates tables if not exist)
-  })
-  .then(() => {
-    console.log("📦 Models synced with Neon");
-  })
-  .catch((err) => {
-    console.error("❌ Database connection failed:", err);
-  });
 
 module.exports = app;

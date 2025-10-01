@@ -38,6 +38,13 @@ This is a sample system for a photo studio business which specializes in **print
 - Payments: Added cash/gcash methods, with endpoints for creating and fetching payments
 - Testing: Orders, Bookings, Photos, Gallery, and Payments successfully tested via Thunder Client
 
+## ✅ 01/10/2025 Progress
+- Added React (Vite) frontend inside project (src/ for code, public/ for build).
+- Configured Vite proxy so frontend API calls (/api/...) connect to backend (http://localhost:3000).
+- Installed and set up Axios for API requests.
+- Built Register and Login pages with working JWT authentication.
+- Fixed backend–frontend communication using CORS setup and running backend (node server.js) + frontend (npx vite) in parallel.
+
 # Current File Structure
 - Config
   * database.js
@@ -73,6 +80,18 @@ This is a sample system for a photo studio business which specializes in **print
   * photoRoutes.js
   * serviceRoutes.js
   * userRoutes.js
+- src
+ - node_modules
+ - pages
+  * App.jsx
+  * Home.jsx
+  * Login.jsx
+  * Register.jsx
+ - utils
+  * axios.js
+* index.html
+* main.jsx
+* package.json 
 - Views
 * .env
 * .gitinore
@@ -81,6 +100,7 @@ This is a sample system for a photo studio business which specializes in **print
 * package.json
 * README.md
 * server.js
+* vite.config.js
 
 # 📝 Notes
 

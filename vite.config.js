@@ -4,9 +4,9 @@ import { resolve } from "path";
 
 export default defineConfig({
   plugins: [react()],
-  root: "./src", // React code lives here
+  root: "./src",
   build: {
-    outDir: "../public", // output React build into backend's public/
+    outDir: "../public",
     emptyOutDir: true,
   },
   resolve: {
@@ -15,8 +15,14 @@ export default defineConfig({
     },
   },
   server: {
+  host: true, // ← ADD THIS
+    port: 5173,
     proxy: {
-      "/api": "http://localhost:3000", // forward API calls to backend
-    },
+      '/api': {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   },
 });
