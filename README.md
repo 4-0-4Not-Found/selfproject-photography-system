@@ -104,58 +104,94 @@ This is a sample system for a photo studio business which specializes in **print
 
 # 📝 Notes
 
-## 🚀 Next Steps in Building the Website
+## 📌 Photography Studio Management System – Project Summary (FAIL-SAFE)
 
-### Step 1. Expand Your Data Models (ERD)
-- **Users** (done — roles: admin, customer)  
-- **Services** (Wedding Photography, Portrait, Event Coverage, Printing, Editing, etc.)  
-- **Orders** (customer bookings/orders with delivery/pickup option)  
-- **Photos** (customer uploads + final edited versions)  
-- **Gallery** (public marketing showcase by admin)  
-- **Payments** (optional: track payment status)  
+### 🎯 Goal & Objective
 
-### Step 2. Add Models + Controllers + Routes
-For each entity:
-- Define a Sequelize model (`Models/Service.js`, `Models/Booking.js`, etc.)  
-- Create a controller with CRUD logic  
-- Create a route file (`Routes/serviceRoutes.js`, etc.)  
-- Register the route in `app.js`  
+To build a full-stack photography studio management system that handles:
 
-**Example Endpoints**
-- `/api/services`  
-- `/api/bookings`  
+- Bookings → scheduling photography services (e.g., weddings, portraits, events).
 
-### Step 3. Secure Routes
-**Customers**:
-- Book services  
-- Upload photos for editing/printing  
-- View gallery & their own orders  
-- Choose delivery or pickup  
+- Orders → print/editing requests with delivery or pickup.
 
-**Admins**:
-- Manage services  
-- Approve/manage orders  
-- Upload finished photos  
-- Handle delivery/pickup logistics  
+- Photos → uploaded and linked to orders.
 
-🔑 Use **JWT middleware** for role-based access.  
+- Gallery → public showcase of selected photos.
 
-### Step 4. Test in Postman
-- Register/Login user → get token  
-- Test protected routes (e.g., add service, create order)  
-- Confirm Neon DB updates with real data  
+- Payments → cash or GCash, tracked per order.
 
-### Step 5. Build the Frontend
-- Customer-facing website + admin dashboard  
-- Use **React** (or Next.js)  
-- Fetch data from backend API endpoints  
+- Authentication & Roles → JWT-based login for users; role-based access (user vs. admin).
 
-### Step 6. Deploy Free
-- **Backend** → Render / Railway  
-- **Frontend** → Vercel / Netlify  
-- **Database** → already hosted on Neon  
+- Frontend (React + Vite) → for users/admin to interact with the system.
 
----
+### 🛠️ Current Tech Stack
+
+- Backend: Node.js + Express.js
+
+- Database: Neon Postgres (Sequelize ORM)
+
+- Frontend: React (Vite) + Axios
+
+- Auth: JWT with role-based access control
+
+- Other: CORS enabled for frontend-backend communication
+
+### ✅ Progress So Far
+**Backend**
+
+Models implemented: User, Service, Booking, Order, Photo, Gallery, Payment.
+
+Associations set up correctly (Users ↔ Bookings, Orders ↔ Photos, Orders ↔ Payments, etc.).
+
+Controllers + Routes completed:
+
+- Users (basic setup)
+
+- Services (CRUD)
+
+- Bookings (create, fetch)
+
+- Orders (create, fetch, get by ID)
+
+- Photos (linked to Orders)
+
+- Gallery (add, fetch)
+
+- Payments (cash/gcash, linked to Orders)
+
+- Authentication & JWT login/register with roles (user/admin).
+
+- Tested API endpoints using Thunder Client/Postman (CRUD verified).
+
+**Frontend**
+
+- React integrated directly in the backend project structure (src/ for code, public/ for builds).
+
+- Vite configured with proxy to backend (/api → localhost:3000).
+
+- Axios installed and working.
+
+- Pages implemented: Register & Login with working backend communication.
+
+- Fixed frontend-backend communication issue with CORS + proxy config.
+
+- Running both servers in parallel (node server.js for backend, npx vite for frontend).
+
+### 🔜 Next Steps
+
+- Expand frontend: Dashboard, Booking form, Order form, Payment handling, Gallery display.
+
+- Admin UI: manage users, bookings, services, and payments.
+
+- Refine backend: validation, error handling, and optional image storage (Cloudinary/S3).
+
+- Deployment: likely Vercel (frontend) + Render/Railway (backend + Postgres).
+
+### 💡 How to Resume Development
+
+When continuing this project in another AI/chat, provide this summary and say:
+
+“Continue guiding me in developing this Photography Studio Management System from where we left off. The backend and payments are already working, and the frontend has login/register with backend communication. Next, I want to build out the remaining frontend pages (dashboard, bookings, orders, gallery, payments, admin panel) step by step.”
 
 ## 🆕 New Features Added
 - **Photo Uploads**: Customers upload photos for editing/printing  
