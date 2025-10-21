@@ -9,7 +9,7 @@ const Order = sequelize.define("Order", {
   },
   deliveryAddress: { type: DataTypes.STRING, allowNull: true }, // needed if delivery
   status: {
-    type: DataTypes.ENUM("pending", "editing", "ready", "printed", "delivered", "picked_up"),
+    type: DataTypes.ENUM("pending", "editing", "ready", "printed", "delivered", "picked_up", "canceled"),
     defaultValue: "pending",
   },
   paymentStatus: {

@@ -9,7 +9,7 @@ exports.createOrder = async (req, res) => {
     const order = await Order.create({
       userId,
       serviceId,
-      deliveryMethod,
+      deliveryMethod, 
       deliveryAddress,
     });
 
@@ -27,6 +27,36 @@ exports.getMyOrders = async (req, res) => {
       include: [Service, Photo, Payment],
     });
     res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Customer Cancellation
+exports.cancelMyOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    // Find the order and verify it belongs to the user
+    const order = await Order.findOne({ 
+      where: { id, userId } 
+    });
+
+    if (!order) {
+      return res.status(404).json({ error: "Order not found or you don't have permission" });
+    }
+
+    // Only allow cancellation of pending orders (like bookings)
+    if (order.status !== 'pending') {
+      return res.status(400).json({ error: "Can only cancel pending orders" });
+    }
+
+    // Update status to canceled
+    order.status = 'canceled';
+    await order.save();
+
+    res.json({ message: "Order canceled successfully", order });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

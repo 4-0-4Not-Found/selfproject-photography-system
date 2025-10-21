@@ -4,9 +4,9 @@ const { Booking, User, Service } = require("../Models");
 exports.createBooking = async (req, res) => {
   try {
     const userId = req.user.id; // from token
-    const { date, time, serviceId } = req.body;
+    const { date, time, serviceId, location} = req.body;
 
-    const booking = await Booking.create({ date, time, userId, serviceId });
+    const booking = await Booking.create({ date, time, location,userId, serviceId });
     res.status(201).json(booking);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -21,6 +21,36 @@ exports.getMyBookings = async (req, res) => {
       include: [Service],
     });
     res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Customer can Cancel booking
+exports.cancelMyBooking = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    // Find the booking and verify it belongs to the user
+    const booking = await Booking.findOne({ 
+      where: { id, userId } 
+    });
+
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found or you don't have permission" });
+    }
+
+    // Only allow cancellation of pending bookings
+    if (booking.status !== 'pending') {
+      return res.status(400).json({ error: "Can only cancel pending bookings" });
+    }
+
+    // Update status to canceled
+    booking.status = 'canceled';
+    await booking.save();
+
+    res.json({ message: "Booking canceled successfully", booking });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

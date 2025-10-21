@@ -45,6 +45,15 @@ This is a sample system for a photo studio business which specializes in **print
 - Built Register and Login pages with working JWT authentication.
 - Fixed backend–frontend communication using CORS setup and running backend (node server.js) + frontend (npx vite) in parallel.
 
+## ✅ 02/10/2025 Progress
+- Fixed bookings system: frontend now only sends customDescription for "Other" sessions
+- Added customDescription column to Bookings table via database migration
+- Implemented customer order cancellation matching bookings pattern
+- Updated order status enum to include "canceled" status
+- Enhanced Dashboard with consistent formatting for bookings and orders
+- Added order cancellation endpoint with user ownership verification
+- Improved frontend order display with status colors and cancellation buttons
+
 # Current File Structure
 - Config
   * database.js
@@ -82,10 +91,16 @@ This is a sample system for a photo studio business which specializes in **print
   * userRoutes.js
 - src
  - node_modules
+ - components
+  * Navbar.jsx 
+  * ProtectedRoute.jsx
  - pages
   * App.jsx
+  * Bookings.jsx
+  * Dashboard.jsx
   * Home.jsx
   * Login.jsx
+  * Orders.jsx
   * Register.jsx
  - utils
   * axios.js

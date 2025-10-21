@@ -6,6 +6,10 @@ const Service = sequelize.define("Service", {
   name: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.TEXT },
   price: { type: DataTypes.FLOAT, allowNull: false },
+  category: { // ← ADD THIS
+    type: DataTypes.ENUM("session", "product"),
+    allowNull: false
+  }
 });
 
 module.exports = Service;

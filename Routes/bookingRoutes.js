@@ -9,6 +9,9 @@ router.post("/", authenticate, bookingController.createBooking);
 // customer sees own bookings (implement in controller to use req.user.id)
 router.get("/my", authenticate, bookingController.getMyBookings);
 
+// customer deletes booking
+router.delete("/my/:id", authenticate, bookingController.cancelMyBooking);
+
 // admin: get all / update / approve
 router.get("/", authenticate, isAdmin, bookingController.getBookings);
 router.put("/:id", authenticate, isAdmin, bookingController.updateBooking);
