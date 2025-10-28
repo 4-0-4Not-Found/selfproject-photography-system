@@ -6,22 +6,6 @@ const PORT = process.env.PORT || 3000;
 
 console.log('🔴 STARTING SERVER...');
 
-// PREVENT PROCESS FROM EXITING
-process.stdin.resume(); // Keep stdin open
-process.on('SIGINT', () => {
-  console.log('Received SIGINT. Shutting down gracefully...');
-  process.exit(0);
-});
-process.on('SIGTERM', () => {
-  console.log('Received SIGTERM. Shutting down gracefully...');
-  process.exit(0);
-});
-
-// Keep the event loop busy
-const keepAlive = setInterval(() => {
-  // This keeps the process running
-}, 1000);
-
 async function startServer() {
   try {
     console.log('🔄 Testing database connection...');
@@ -31,10 +15,11 @@ async function startServer() {
     await sequelize.sync();
     console.log("📦 Models synced with Neon");
 
-    const server = app.listen(PORT, '127.0.0.1', () => {
-      console.log(`✅ SERVER RUNNING: http://127.0.0.1:${PORT}`);
-      console.log('📡 Server.address():', server.address());
-      console.log('💓 Process will stay alive until manually stopped');
+    // ✅ FIX: Remove '127.0.0.1' to bind to all interfaces
+    const server = app.listen(PORT, () => {
+      console.log(`✅ SERVER RUNNING on port ${PORT}`);
+      console.log(`🌐 Available at: http://localhost:${PORT}`);
+      console.log(`🌐 Also available at: http://127.0.0.1:${PORT}`);
       console.log('🛑 Press Ctrl+C to stop the server');
     });
 
@@ -44,7 +29,6 @@ async function startServer() {
 
   } catch (error) {
     console.error('❌ Failed to start server:', error);
-    clearInterval(keepAlive);
     process.exit(1);
   }
 }

@@ -54,6 +54,15 @@ This is a sample system for a photo studio business which specializes in **print
 - Added order cancellation endpoint with user ownership verification
 - Improved frontend order display with status colors and cancellation buttons
 
+## ✅ 15/10/2025 Progress
+- Made Admin dashboard functional
+- CRUD operations work on admin side
+- customer side and admin side can both manage records seperately
+- batch delete and selection in progress
+
+## ✅ 28/10/2025 Progress
+- Made Batch Selection functional
+
 # Current File Structure
 - Config
   * database.js
@@ -69,6 +78,8 @@ This is a sample system for a photo studio business which specializes in **print
 - Middleware
   * authMiddleware.js
   * upload.js
+- migrations
+  * add-soft-delete-fields.js
 - Models
   * booking.js
   * gallery.js
@@ -95,6 +106,7 @@ This is a sample system for a photo studio business which specializes in **print
   * Navbar.jsx 
   * ProtectedRoute.jsx
  - pages
+  * AdminDashboard.jsx
   * App.jsx
   * Bookings.jsx
   * Dashboard.jsx
@@ -107,13 +119,17 @@ This is a sample system for a photo studio business which specializes in **print
 * index.html
 * main.jsx
 * package.json 
+- uploads
 - Views
 * .env
 * .gitinore
 * app.js
+* check-migration.js
+* create-admin.js
 * package-lock.json
 * package.json
 * README.md
+* run-soft-delete-migrations.js
 * server.js
 * vite.config.js
 
